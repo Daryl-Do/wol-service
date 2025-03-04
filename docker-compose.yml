@@ -1,0 +1,19 @@
+services:
+  wol-service:
+    build: .
+    image: wol-service
+    container_name: wol-service
+    restart: unless-stopped
+    ports:
+      - "12580:12580"
+    environment:
+      # Set the broadcast IP for your network
+      - BROADCAST_IP=192.168.31.255
+
+      # Set the MAC address for your machine
+      - pc1=00:11:22:33:44:55
+      - pc2=AA:BB:CC:DD:EE:FF
+      # You can add more machines with format NAME=MAC_ADDRESS
+
+    # Use host network instead of bridge
+    network_mode: host
