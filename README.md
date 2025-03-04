@@ -1,10 +1,10 @@
 # Wake-on-LAN (WoL) Docker Service
 
-This is a very lightweight Docker application that provides a simple web interface to wake up local machines using Wake-on-LAN (WoL) technology.
+A very lightweight Docker application to wake up local machines using Wake-on-LAN (WoL)
 
 ## Features
 
-- Minimal memory usage : about 18 Mb
+- Minimal memory usage : about 38 Mb
 - Simple HTTP API to wake up machines by name, configured by docker-compose or docker-run
 - Supports multiple machines
 
