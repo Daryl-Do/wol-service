@@ -2,6 +2,12 @@
 
 A very lightweight Docker application to wake up local machines using Wake-on-LAN (WoL)
 
+一个非常轻量的wol服务，实现内网远程开机。
+
+You can integete with IOS shortcut or NFC tag.
+
+可以配合使用IOS的shortcut，或者NFC的贴纸。
+
 ## Features
 
 - Minimal memory usage : about 38 Mb
@@ -10,10 +16,10 @@ A very lightweight Docker application to wake up local machines using Wake-on-LA
 
 ## Prerequisites
 
-- Docker installed on your host system
-- Wake-on-LAN enabled on the target machines
-- The MAC and IP addresses of the target machines
-- Target machines must be on the same network as the Docker host
+1. Docker installed on your host system
+2. Wake-on-LAN enabled on the target machines
+3. The MAC and IP addresses of the target machines acquired
+4. Target machines must be on the same network as the Docker host
 
 ## Quick Start
 
@@ -74,39 +80,6 @@ This is particularly useful when using Docker on macOS or Windows where the Dock
 
 You can also access `http://localhost:12580/` to get a list of available machines.
 
-## Environment Variables
-
-- `PORT`: The port on which the service will listen (default: 12580)
-- `BROADCAST_IP`: The broadcast IP address to send magic packets to (helpful for Docker on macOS/Windows)
-- You can define machines using any environment variable with a MAC address as its value:
-  - Direct naming: `mypc=XX:XX:XX:XX:XX:XX` 
-  - With prefix (for backwards compatibility): `MACHINE_mypc=XX:XX:XX:XX:XX:XX`
-  - All names are case-insensitive
-
-## Building the Image
-
-If you want to build the Docker image yourself:
-
-```bash
-docker build -t wol-service .
-```
-
-## Troubleshooting
-
-1. Make sure Wake-on-LAN is enabled in the BIOS/UEFI of the target machines.
-2. Ensure the target machines are configured to respond to WoL magic packets.
-3. The Docker host and target machines must be on the same network.
-4. Some networks might block broadcast packets, which are required for WoL to work.
-
-### Docker on macOS/Windows
-
-If you're running Docker on macOS or Windows, you'll need to set the `BROADCAST_IP` environment variable to your network's broadcast address (e.g., 192.168.1.255), as Docker runs in a virtual machine and cannot directly access the host's network.
-
-To find your broadcast address:
-- On macOS: Run `ifconfig` in Terminal and look for your active interface (en0 for WiFi, en1 for Ethernet typically)
-- On Windows: Run `ipconfig` in Command Prompt and look for your active adapter
-
-Once you know your IP address (e.g., 192.168.1.100) and subnet mask (e.g., 255.255.255.0), your broadcast address will typically be your subnet with the last octet set to 255 (e.g., 192.168.1.255).
 
 ## License
 
